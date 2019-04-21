@@ -7,12 +7,28 @@ package marikost_tubespbo;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author J
  */
 public class DaftarAkun extends javax.swing.JFrame {
+    
+    String Nama, Username, Password, ConfirmPassword;
+    
+    //database
+    private Connection con;
+    private Statement stat;
+    private ResultSet res;
 
     /**
      * Creates new form DaftarAkun
@@ -31,6 +47,39 @@ public class DaftarAkun extends javax.swing.JFrame {
         
         // Matiin Resize / Maximize
         setResizable(false);
+        
+    }
+    
+    public boolean cekUsername(String username)
+    {
+        PreparedStatement ps;
+        ResultSet rs;
+        boolean checkUser = false;
+        String query = "SELECT * FROM `autentikasi` WHERE `username` =?";
+        
+        try {
+            ps = Koneksi.getConnection().prepareStatement(query);
+            ps.setString(1, username);
+            
+            rs = ps.executeQuery();
+            
+            if(rs.next())
+            {
+                checkUser = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DaftarAkun.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return checkUser;
+    }
+    
+    // Beguna Untuk Membersihkan Text Field setelah registrasi maupun gagal registrasi
+    
+    public void penghapus() {
+        txtNama.setText("");
+        txtNamaPengguna.setText("");
+        txtPass.setText("");
+        txtKonfirmasiPass.setText("");
     }
 
     /**
@@ -54,6 +103,8 @@ public class DaftarAkun extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtPass = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        txtKonfirmasiPass = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Marikost - Daftar Akun");
@@ -84,6 +135,13 @@ public class DaftarAkun extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(51, 204, 255));
         jButton1.setText("Daftar Akun");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Konfirmasi Kata Sandi : ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -100,6 +158,18 @@ public class DaftarAkun extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel6)
+                                        .addComponent(txtNamaPengguna)
+                                        .addComponent(jLabel7)
+                                        .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel8)
+                                    .addComponent(txtKonfirmasiPass, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -109,22 +179,13 @@ public class DaftarAkun extends javax.swing.JFrame {
                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(35, 35, 35))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel5)
-                                    .addComponent(txtNama)
-                                    .addComponent(jLabel6)
-                                    .addComponent(txtNamaPengguna)
-                                    .addComponent(jLabel7)
-                                    .addComponent(txtPass, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(14, Short.MAX_VALUE))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel2)
@@ -132,11 +193,11 @@ public class DaftarAkun extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNamaPengguna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -144,6 +205,10 @@ public class DaftarAkun extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtKonfirmasiPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
@@ -162,6 +227,59 @@ public class DaftarAkun extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String nama = txtNama.getText();
+        String namapengguna = txtNamaPengguna.getText();
+        String pass = String.valueOf(txtPass.getPassword());
+        String re_pass = String.valueOf(txtKonfirmasiPass.getPassword());
+                
+        if(namapengguna.equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Masukan Nama Pengguna!");
+        }
+        
+        else if(pass.equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Masukan Kata Sandi!");
+        }
+        else if(!pass.equals(re_pass))
+        {
+            JOptionPane.showMessageDialog(null, "Masukan Konfirmasi Password / Password tidak cocok!");
+        }
+        
+        else if(cekUsername(namapengguna))
+        {
+            JOptionPane.showMessageDialog(null, "Username Sudah Ada / Sudah Teregistrasi!");
+            penghapus();
+        }
+        
+        else{
+            
+        PreparedStatement ps;
+        String query = "INSERT INTO `autentikasi`(`nama_pengguna`, `username`, `password`) VALUES (?,?,?)";
+        
+        try {
+            ps = Koneksi.getConnection().prepareStatement(query);
+            
+            ps.setString(1, nama);
+            ps.setString(2, namapengguna);
+            ps.setString(3, pass);
+            
+            if(ps.executeUpdate() > 0)
+            {
+                JOptionPane.showMessageDialog(null, "Registrasi Berhasil, Silahkan Login!");
+                penghapus();
+                new Login().setVisible(true);
+                this.dispose(); 
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DaftarAkun.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,7 +325,9 @@ public class DaftarAkun extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField txtKonfirmasiPass;
     private javax.swing.JTextField txtNama;
     private javax.swing.JTextField txtNamaPengguna;
     private javax.swing.JPasswordField txtPass;
