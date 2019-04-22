@@ -56,7 +56,7 @@ public class Kemitraan extends javax.swing.JFrame {
         jPanel13 = new javax.swing.JPanel();
         btnLogout = new javax.swing.JButton();
         Data_Table = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        nama_mitra = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel7 = new javax.swing.JLabel();
@@ -102,8 +102,8 @@ public class Kemitraan extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        jLabel5.setText("Hi, (USERNAME)");
+        nama_mitra.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        nama_mitra.setText("Hi, (USERNAME)");
 
         jLabel6.setFont(new java.awt.Font("Dialog", 0, 34)); // NOI18N
         jLabel6.setText("  Marikost - Kemitraan");
@@ -125,7 +125,7 @@ public class Kemitraan extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5)
+                .addComponent(nama_mitra)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel13Layout.setVerticalGroup(
@@ -135,10 +135,10 @@ public class Kemitraan extends javax.swing.JFrame {
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jLabel5)
                 .addGap(18, 18, 18)
-                .addComponent(Data_Table)
+                .addComponent(nama_mitra)
+                .addGap(30, 30, 30)
+                .addComponent(Data_Table, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -306,7 +306,6 @@ public class Kemitraan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -317,8 +316,9 @@ public class Kemitraan extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField kontak;
     private javax.swing.JTextField nama_kost;
+    public javax.swing.JLabel nama_mitra;
     private javax.swing.JButton tambah_btn;
-    private javax.swing.JTextField txtNamaMitra;
+    public javax.swing.JTextField txtNamaMitra;
     private javax.swing.JButton ubah_btn;
     // End of variables declaration//GEN-END:variables
 }
