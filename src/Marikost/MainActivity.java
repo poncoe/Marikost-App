@@ -106,7 +106,7 @@ public class MainActivity extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        nama_user.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        nama_user.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         nama_user.setText("Hi, (.....)");
 
         Tentang_aplikasi.setText("Tentang Aplikasi");
