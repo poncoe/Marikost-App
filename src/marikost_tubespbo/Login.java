@@ -240,7 +240,7 @@ public class Login extends javax.swing.JFrame {
                     main.pack();
                     main.setLocationRelativeTo(null);
                     main.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                    main.jLabel1.setText("Hi, Selamat Datang "+username+"!");
+                    main.nama_user.setText("Hi, "+username+"");
                     
                     this.dispose();
             }
