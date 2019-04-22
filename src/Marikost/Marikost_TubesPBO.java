@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package marikost_tubespbo;
+package Marikost;
+
+import auth.Login;
 
 /**
  *
@@ -16,7 +18,8 @@ public class Marikost_TubesPBO {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println("Silahkan run file LOGIN");
+        System.out.println("Selamat Datang! Memulai Marikost...");
+        new Login().setVisible(true);
     }
     
 }

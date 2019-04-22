@@ -3,19 +3,34 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package marikost_tubespbo;
+package Marikost;
+
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 /**
  *
  * @author J
  */
-public class Tentang_Aplikasi extends javax.swing.JFrame {
+public class TentangAplikasi extends javax.swing.JFrame {
 
     /**
      * Creates new form Tentang_Aplikasi
      */
-    public Tentang_Aplikasi() {
+    public TentangAplikasi() {
         initComponents();
+        
+        // mengambil ukuran layar
+        Dimension layar = Toolkit.getDefaultToolkit().getScreenSize();
+
+        // membuat titik x dan y
+        int x = layar.width / 2  - this.getSize().width / 2;
+        int y = layar.height / 2 - this.getSize().height / 2;
+
+        this.setLocation(x, y);
+        
+        // Matiin Resize / Maximize
+        setResizable(false);
     }
 
     /**
@@ -53,22 +68,18 @@ public class Tentang_Aplikasi extends javax.swing.JFrame {
         jLabel6.setText("jLabel6");
 
         jLabel7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Julian Farhan Wijaya");
 
         jLabel8.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("1301172731");
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/marikost-logo_jframe.png"))); // NOI18N
         jLabel9.setText("jLabel6");
 
         jLabel10.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Arief Wardhana");
 
         jLabel11.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("1301173708");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -123,19 +134,15 @@ public class Tentang_Aplikasi extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
 
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Marikost");
 
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Aplikasi Yang Membantu");
 
         jLabel4.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Mahasiswa Rantau Dalam");
 
         jLabel5.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Mencari Tempat Tinggal");
 
         Tutup_btn.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -207,6 +214,11 @@ public class Tentang_Aplikasi extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void Tutup_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tutup_btnActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_Tutup_btnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -224,20 +236,21 @@ public class Tentang_Aplikasi extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Tentang_Aplikasi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TentangAplikasi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Tentang_Aplikasi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TentangAplikasi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Tentang_Aplikasi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TentangAplikasi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Tentang_Aplikasi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TentangAplikasi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Tentang_Aplikasi().setVisible(true);
+                new TentangAplikasi().setVisible(true);
             }
         });
     }
