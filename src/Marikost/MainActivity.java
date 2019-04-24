@@ -5,10 +5,15 @@
  */
 package Marikost;
 
+import auth.Koneksi;
 import auth.Login;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.sql.Connection;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,6 +26,7 @@ public class MainActivity extends javax.swing.JFrame {
      */
     public MainActivity() {
         initComponents();
+        tampilTable();
         
         // mengambil ukuran layar
         Dimension layar = Toolkit.getDefaultToolkit().getScreenSize();
@@ -33,6 +39,33 @@ public class MainActivity extends javax.swing.JFrame {
         
         // Matiin Resize / Maximize
         setResizable(false);
+    }
+    
+    private void tampilTable(){
+        // membuat tampilan model tabel
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("No");
+        model.addColumn("Pemilik");
+        model.addColumn("Nama");
+        model.addColumn("Penghuni");
+        model.addColumn("Deskripsi & Fasilitas");
+        model.addColumn("Kontak");
+        model.addColumn("Harga");
+        
+        //menampilkan data database kedalam tabel
+        try {
+            int no=1;
+            String sql = "select * from homey";
+            java.sql.Connection conn=(Connection)Koneksi.getConnection();
+            java.sql.Statement stm=conn.createStatement();
+            java.sql.ResultSet res=stm.executeQuery(sql);
+            while(res.next()){
+                model.addRow(new Object[]{no++,res.getString(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5),res.getString(6)});
+            }
+            jTable1.setModel(model);
+            jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        } catch (Exception e) {
+        }
     }
 
     /**
@@ -51,7 +84,7 @@ public class MainActivity extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         nama_user = new javax.swing.JLabel();
-        Tentang_aplikasi = new javax.swing.JToggleButton();
+        btnTentangAplikasi = new javax.swing.JToggleButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         btnLogout = new javax.swing.JButton();
@@ -113,6 +146,8 @@ public class MainActivity extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jTable1.setEnabled(false);
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout List_dataLayout = new javax.swing.GroupLayout(List_data);
@@ -135,10 +170,10 @@ public class MainActivity extends javax.swing.JFrame {
         nama_user.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         nama_user.setText("Hi, (.....)");
 
-        Tentang_aplikasi.setText("Tentang Aplikasi");
-        Tentang_aplikasi.addActionListener(new java.awt.event.ActionListener() {
+        btnTentangAplikasi.setText("Tentang Aplikasi");
+        btnTentangAplikasi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Tentang_aplikasiActionPerformed(evt);
+                btnTentangAplikasiActionPerformed(evt);
             }
         });
 
@@ -159,6 +194,7 @@ public class MainActivity extends javax.swing.JFrame {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("LOGOUT");
 
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Menu"));
 
         jLabel3.setText("Pencarian Wilayah :");
@@ -259,7 +295,7 @@ public class MainActivity extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(Tentang_aplikasi, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnTentangAplikasi, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -308,7 +344,7 @@ public class MainActivity extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(41, 41, 41)
-                        .addComponent(Tentang_aplikasi, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnTentangAplikasi, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -328,10 +364,10 @@ public class MainActivity extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Tentang_aplikasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tentang_aplikasiActionPerformed
+    private void btnTentangAplikasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTentangAplikasiActionPerformed
         // TODO add your handling code here:
         new TentangAplikasi().setVisible(true);
-    }//GEN-LAST:event_Tentang_aplikasiActionPerformed
+    }//GEN-LAST:event_btnTentangAplikasiActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
@@ -385,12 +421,12 @@ public class MainActivity extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel List_data;
-    private javax.swing.JToggleButton Tentang_aplikasi;
     private javax.swing.JButton btnFilterPenghuni;
     private static javax.swing.JButton btnLogout;
     private javax.swing.JButton btnPenawaranHarga;
     private javax.swing.JButton btnPetunjuk;
     private javax.swing.JButton btnTampilWilayah;
+    private javax.swing.JToggleButton btnTentangAplikasi;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private static javax.swing.JLabel jLabel1;
