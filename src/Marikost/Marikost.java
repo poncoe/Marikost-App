@@ -11,7 +11,7 @@ import auth.Login;
  *
  * @author poncoe
  */
-public class Marikost_TubesPBO {
+public class Marikost {
 
     /**
      * @param args the command line arguments
