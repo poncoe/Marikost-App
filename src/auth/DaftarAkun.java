@@ -50,11 +50,14 @@ public class DaftarAkun extends javax.swing.JFrame {
         
     }
     
+    // mengecek apakah username sudah ada atau belum
     public boolean cekUsername(String username)
     {
         PreparedStatement ps;
         ResultSet rs;
         boolean checkUser = false;
+        
+        // queri sql untuk mengecek username
         String query = "SELECT * FROM `autentikasi` WHERE `username` =?";
         
         try {
@@ -241,10 +244,13 @@ public class DaftarAkun extends javax.swing.JFrame {
 
     private void btnDaftarAkunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDaftarAkunActionPerformed
         // TODO add your handling code here:
+        
+        // kode untuk mengampil textfield
         String namapengguna = txtNamaPengguna.getText();
         String pass = String.valueOf(txtPass.getPassword());
         String re_pass = String.valueOf(txtKonfirmasiPass.getPassword());
                 
+        // kodingan untuk pengecekan (jika user tidak mengisi field)
         if(namapengguna.equals(""))
         {
             JOptionPane.showMessageDialog(null, "Masukan Nama Pengguna!");
@@ -265,9 +271,11 @@ public class DaftarAkun extends javax.swing.JFrame {
             penghapus();
         }
         
+        // kondisi dimana semua sudah terisi dan di input kedalam database mysql
         else{
             
         PreparedStatement ps;
+        // queri mysql untuk insert data
         String query = "INSERT INTO `autentikasi`(`username`, `password`) VALUES (?,?)";
         
         try {
@@ -292,13 +300,21 @@ public class DaftarAkun extends javax.swing.JFrame {
 
     private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed
         // TODO add your handling code here:
+        
+        // menampilkan halaman login
         new Login().setVisible(true);
+        
+        // menutup halaman ini
         this.dispose();
     }//GEN-LAST:event_btnKembaliActionPerformed
 
     private void btnDaftarMitraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDaftarMitraActionPerformed
         // TODO add your handling code here:
+        
+        // menampilkan halaman daftar mitra
         new DaftarMitra().setVisible(true);
+        
+        // menutup halaman ini
         this.dispose();
     }//GEN-LAST:event_btnDaftarMitraActionPerformed
 

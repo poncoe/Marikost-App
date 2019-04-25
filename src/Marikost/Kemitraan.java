@@ -29,6 +29,8 @@ public class Kemitraan extends javax.swing.JFrame {
      */
     public Kemitraan() {
         initComponents();
+        
+        // buat manggil prosedur tampil table, jadi berfungsi untuk view table
         tampilTable();
         
         // mengambil ukuran layar
@@ -37,7 +39,6 @@ public class Kemitraan extends javax.swing.JFrame {
         // membuat titik x dan y
         int x = layar.width / 2  - this.getSize().width / 2;
         int y = layar.height / 2 - this.getSize().height / 2;
-
         this.setLocation(x, y);
         
         // Matiin Resize / Maximize
@@ -59,10 +60,14 @@ public class Kemitraan extends javax.swing.JFrame {
         //menampilkan data database kedalam tabel
         try {
             int no=1;
+            // query sql untuk menampilkan semua data yang ada di table homey
             String sql = "select * from homey";
+            // penghubung koneksi ke localhost mysql
             java.sql.Connection conn=(Connection)Koneksi.getConnection();
             java.sql.Statement stm=conn.createStatement();
+            // mengeksekusi sql
             java.sql.ResultSet res=stm.executeQuery(sql);
+            // membuat perulangan untuk mencetak data yang ada didalam sql ke dalam tabel
             while(res.next()){
                 model.addRow(new Object[]{no++,res.getString(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5),res.getString(6),res.getString(7)});
             }
@@ -71,6 +76,7 @@ public class Kemitraan extends javax.swing.JFrame {
         }
     }
     
+    // prosedur ini berfungsi untuk melakukan reset pada field, bisa jg pake null
     public void penghapus() {
         txtNamaMitra.setText("");
         nama_kost.setText("");
@@ -412,21 +418,28 @@ public class Kemitraan extends javax.swing.JFrame {
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
+        
+        // berfungsi untuk menutup layout ini
         this.dispose();
+        // memanggil layout login
         new auth.Login().setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnTambahDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahDataActionPerformed
         // TODO add your handling code here:
         try {
+            // query sql untuk menampilkan menginputkan data ke table homey, & di gettext dari field
             String sql = "INSERT INTO homey VALUES ('"+txtNamaMitra.getText()+"','"+nama_kost.getText()+"','"+boxJenisPenghuni.getSelectedItem()+"','"+Deskripsi_fasilitas.getText()+"','"+wilayah.getText()+"','"+kontak.getText()+"','"+harga.getText()+"')";
+            // penghubung koneksi ke localhost mysql
             java.sql.Connection conn=(Connection)Koneksi.getConnection();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
+            // mengeksekusi sql
             pst.execute();
             JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan!");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
+        // memangggil prosedur tampil table & penghapus
         tampilTable();
         penghapus();
     }//GEN-LAST:event_btnTambahDataActionPerformed
@@ -470,20 +483,26 @@ public class Kemitraan extends javax.swing.JFrame {
         // TODO add your handling code here:
         // fungsi Edit Data
         try {
+            // query sql untuk update data ke table homey, & di gettext dari field
             String sql ="UPDATE homey SET pemilik = '"+txtNamaMitra.getText()+"', nama = '"+nama_kost.getText()+"', jenis = '"+boxJenisPenghuni.getSelectedItem()+"',deskripsi= '"+Deskripsi_fasilitas.getText()+"',wilayah= '"+wilayah.getText()+"',kontak= '"+kontak.getText()+"',harga= '"+harga.getText()+"' WHERE pemilik = '"+txtNamaMitra.getText()+"'";
+            // penghubung koneksi ke localhost mysql
             java.sql.Connection conn=(Connection)Koneksi.getConnection();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
+            // mengeksekusi sql
             pst.execute();
             JOptionPane.showMessageDialog(this, "Data Berhasil Diubah!");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Perubahan Data Gagal"+e.getMessage());
         }
+        // panggil prosedur tampil table dan penghapus/reset
         tampilTable();
         penghapus();
     }//GEN-LAST:event_btnUbahActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
+        
+        // panggil prosedur penghapus/reset
         penghapus();
     }//GEN-LAST:event_btnResetActionPerformed
 
@@ -491,9 +510,13 @@ public class Kemitraan extends javax.swing.JFrame {
         // TODO add your handling code here:
         // fungsi hapus data
         try {
+            // query sql untuk delete data table homey, & nama_kost gettext dari field, karna yang akan di delete berawal
+            //dari nama_kost
             String sql ="delete from homey where nama='"+nama_kost.getText()+"'";
+            // penghubung koneksi ke localhost mysql
             java.sql.Connection conn=(Connection)Koneksi.getConnection();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
+            // mengekseskusi sql
             pst.execute();
             JOptionPane.showMessageDialog(this, "Data Berhasil Dihapus!");
         } catch (Exception e) {

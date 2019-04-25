@@ -47,11 +47,14 @@ public class DaftarMitra extends javax.swing.JFrame {
         setResizable(false);
     }
     
+    // mengecek apakah username sudah ada atau belum
     public boolean cekUsername(String username)
     {
         PreparedStatement ps;
         ResultSet rs;
         boolean checkUser = false;
+        
+        // queri sql untuk mengecek username
         String query = "SELECT * FROM `mitra` WHERE `nama_mitra` =?";
         
         try {
@@ -205,10 +208,14 @@ public class DaftarMitra extends javax.swing.JFrame {
 
     private void btnDaftarMitraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDaftarMitraActionPerformed
         // TODO add your handling code here:
+        
+        // kode untuk mengampil textfield
         String nama = txtNamaMitra.getText();
         String pass = String.valueOf(txtPassMitra.getPassword());
         String re_pass = String.valueOf(txtRePassMitra.getPassword());
                 
+        // kodingan untuk pengecekan (jika user tidak mengisi field)
+        
         if(nama.equals(""))
         {
             JOptionPane.showMessageDialog(null, "Masukan Nama Mitra!");
@@ -229,9 +236,12 @@ public class DaftarMitra extends javax.swing.JFrame {
             penghapus();
         }
         
+        // kondisi dimana semua sudah terisi dan di input kedalam database mysql
         else{
             
         PreparedStatement ps;
+        
+        // queri mysql untuk insert data
         String query = "INSERT INTO `mitra`(`nama_mitra`, `password`) VALUES (?,?)";
         
         try {
@@ -256,7 +266,11 @@ public class DaftarMitra extends javax.swing.JFrame {
 
     private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed
         // TODO add your handling code here:
+        
+        // menampilkan halaman daftar akun
         new DaftarAkun().setVisible(true);
+        
+        // menutup halaman ini
         this.dispose();
     }//GEN-LAST:event_btnKembaliActionPerformed
 

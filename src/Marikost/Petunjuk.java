@@ -193,6 +193,8 @@ public class Petunjuk extends javax.swing.JFrame {
 
     private void btnTutupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTutupActionPerformed
         // TODO add your handling code here:
+        
+        // untuk menutup layout ini
         this.dispose();
     }//GEN-LAST:event_btnTutupActionPerformed
 

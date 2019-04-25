@@ -44,6 +44,7 @@ public class Login extends javax.swing.JFrame {
 
     }
     
+    // prosedur untuk penghapus / reset field
     public void penghapus() {
         txtUsername.setText("");
         txtPassword.setText("");
@@ -244,7 +245,11 @@ public class Login extends javax.swing.JFrame {
 
     private void btnRegisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisActionPerformed
         // TODO add your handling code here:
+        
+        // memanggil daftar akun
         new DaftarAkun().setVisible(true);
+        
+        // menutup layout ini
         this.dispose();
     }//GEN-LAST:event_btnRegisActionPerformed
 
@@ -252,9 +257,12 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         PreparedStatement ps;
         ResultSet rs;
+        
+        // mengambil data / nilai dari field username & pass menggunakan getText
         String username = txtUsername.getText();
         String password = String.valueOf(txtPassword.getPassword());
         
+        // queri untuk mengecek apakah username & password ada di database di table autentikasi
         String query = "SELECT * FROM `autentikasi` WHERE `username` =? AND `password` =?";
         
         try {
@@ -263,8 +271,10 @@ public class Login extends javax.swing.JFrame {
             ps.setString(1, username);
             ps.setString(2, password);
             
+            // mengeksekusi queri
             rs = ps.executeQuery();
             
+            // jika ada, maka akan berhasil login dan masuk ke halaman Main Activity
             if(rs.next())
             {
                     MainActivity main = new MainActivity();
@@ -276,6 +286,8 @@ public class Login extends javax.swing.JFrame {
                     
                     this.dispose();
             }
+            
+            // jika tidak berhasil / tidak terdaftar maka akan muncul dialog jika user belom terdaftar & salah
             else{
                     JOptionPane.showMessageDialog(null, "Akun Belum Terdaftar / Nama Pengguna atau Kata Sandi Salah!", "Login Gagal!", 2);
                     penghapus();
@@ -290,9 +302,12 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         PreparedStatement ps;
         ResultSet rs;
+        
+        // mengambil data / nilai dari field username & pass menggunakan getText
         String username = txtUsername.getText();
         String password = String.valueOf(txtPassword.getPassword());
         
+        // queri untuk mengecek apakah mitra & password ada di database di table mitra
         String query = "SELECT * FROM `mitra` WHERE `nama_mitra` =? AND `password` =?";
         
         try {
@@ -301,8 +316,10 @@ public class Login extends javax.swing.JFrame {
             ps.setString(1, username);
             ps.setString(2, password);
             
+            // mengeksekusi queri
             rs = ps.executeQuery();
             
+            // jika ada, maka akan berhasil login dan masuk ke halaman Main Activity
             if(rs.next())
             {
                     Kemitraan mitra = new Kemitraan();
@@ -315,6 +332,8 @@ public class Login extends javax.swing.JFrame {
                     
                     this.dispose();
             }
+            
+            // jika tidak berhasil / tidak terdaftar maka akan muncul dialog jika user belom terdaftar & salah
             else{
                     JOptionPane.showMessageDialog(null, "Mitra Belum Terdaftar / Nama Mitra atau Kata Sandi Salah!", "Login Gagal!", 2);
                     penghapus();

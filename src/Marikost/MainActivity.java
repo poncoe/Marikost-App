@@ -26,6 +26,8 @@ public class MainActivity extends javax.swing.JFrame {
      */
     public MainActivity() {
         initComponents();
+        
+        // memanggil prosedur tampil table
         tampilTable();
         
         // mengambil ukuran layar
@@ -56,14 +58,19 @@ public class MainActivity extends javax.swing.JFrame {
         //menampilkan data database kedalam tabel
         try {
             int no=1;
+            // query sql untuk menampilkan semua data yang ada di table homey
             String sql = "select * from homey";
+            // penghubung koneksi ke localhost mysql
             java.sql.Connection conn=(Connection)Koneksi.getConnection();
             java.sql.Statement stm=conn.createStatement();
+            // mengeksekusi sql
             java.sql.ResultSet res=stm.executeQuery(sql);
+            // membuat perulangan untuk mencetak data yang ada didalam sql ke dalam tabel
             while(res.next()){
                 model.addRow(new Object[]{no++,res.getString(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5),res.getString(6),res.getString(7)});
             }
             jTable1.setModel(model);
+            // membuat table menjadi responsif
             jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         } catch (Exception e) {
         }
@@ -367,18 +374,28 @@ public class MainActivity extends javax.swing.JFrame {
 
     private void btnTentangAplikasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTentangAplikasiActionPerformed
         // TODO add your handling code here:
+        
+        // memanggil layout tentang aplikasi
         new TentangAplikasi().setVisible(true);
     }//GEN-LAST:event_btnTentangAplikasiActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
+        
+        // mengclose / menutup layout ini
         this.dispose();
+        
+        // memberikan dialog message kalo logout berhasil
         JOptionPane.showMessageDialog(null, "Logout Akun Berhasil!");
+        
+        // memanggil layout login
         new Login().setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnPetunjukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPetunjukActionPerformed
         // TODO add your handling code here:
+        
+        // memanggil layout petunjuk
         new Petunjuk().setVisible(true);
     }//GEN-LAST:event_btnPetunjukActionPerformed
 

@@ -18,7 +18,11 @@ public class Marikost {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        // melakukan print biasa
         System.out.println("Selamat Datang! Memulai Marikost...");
+        
+        // memanggil layout login
         new Login().setVisible(true);
     }
     
