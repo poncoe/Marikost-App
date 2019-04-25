@@ -57,9 +57,8 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel13" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Component id="jPanel1" alignment="0" pref="0" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="1" min="-2" pref="690" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -89,14 +88,11 @@
                           <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                           <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                          <Component id="jLabel7" min="-2" pref="113" max="-2" attributes="0"/>
-                      </Group>
                       <Component id="jSeparator2" alignment="0" min="-2" pref="222" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
@@ -111,7 +107,7 @@
                               <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="kontak" alignment="0" max="32767" attributes="0"/>
                               <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtNamaMitra" alignment="0" min="-2" pref="188" max="-2" attributes="0"/>
+                              <Component id="txtNamaMitra" alignment="0" max="32767" attributes="0"/>
                               <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="boxJenisPenghuni" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
@@ -119,10 +115,16 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btnReset" max="32767" attributes="0"/>
                               </Group>
+                              <Component id="wilayah" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jLabel7" min="-2" pref="113" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -151,10 +153,14 @@
                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="boxJenisPenghuni" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="Deskripsi_fasilitas" min="-2" pref="112" max="-2" attributes="0"/>
+                  <Component id="Deskripsi_fasilitas" min="-2" pref="45" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="wilayah" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
@@ -173,7 +179,7 @@
                       <Component id="btnHapus" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnReset" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -308,6 +314,13 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnResetActionPerformed"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JLabel" name="jLabel12">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Wilayah : "/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="wilayah">
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel13">
@@ -416,7 +429,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" alignment="0" pref="498" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>

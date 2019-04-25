@@ -52,6 +52,7 @@ public class Kemitraan extends javax.swing.JFrame {
         model.addColumn("Nama");
         model.addColumn("Penghuni");
         model.addColumn("Deskripsi & Fasilitas");
+        model.addColumn("Wilayah");
         model.addColumn("Kontak");
         model.addColumn("Harga");
         
@@ -63,7 +64,7 @@ public class Kemitraan extends javax.swing.JFrame {
             java.sql.Statement stm=conn.createStatement();
             java.sql.ResultSet res=stm.executeQuery(sql);
             while(res.next()){
-                model.addRow(new Object[]{no++,res.getString(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5),res.getString(6)});
+                model.addRow(new Object[]{no++,res.getString(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5),res.getString(6),res.getString(7)});
             }
             jTable1.setModel(model);
         } catch (Exception e) {
@@ -74,6 +75,7 @@ public class Kemitraan extends javax.swing.JFrame {
         txtNamaMitra.setText("");
         nama_kost.setText("");
         Deskripsi_fasilitas.setText("");
+        wilayah.setText("");
         kontak.setText("");
         harga.setText("");
     }
@@ -110,6 +112,8 @@ public class Kemitraan extends javax.swing.JFrame {
         btnUbah = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        wilayah = new javax.swing.JTextField();
         jPanel13 = new javax.swing.JPanel();
         btnLogout = new javax.swing.JButton();
         nama_mitra = new javax.swing.JLabel();
@@ -195,6 +199,8 @@ public class Kemitraan extends javax.swing.JFrame {
             }
         });
 
+        jLabel12.setText("Wilayah : ");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -211,13 +217,11 @@ public class Kemitraan extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(11, 11, 11)
                         .addComponent(jLabel9))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel12)
                             .addComponent(jLabel8)
                             .addComponent(jLabel4)
                             .addComponent(jLabel2)
@@ -231,14 +235,19 @@ public class Kemitraan extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(kontak)
                             .addComponent(jLabel1)
-                            .addComponent(txtNamaMitra, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNamaMitra)
                             .addComponent(jLabel5)
                             .addComponent(boxJenisPenghuni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnReset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addComponent(btnReset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(wilayah))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,10 +274,14 @@ public class Kemitraan extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(boxJenisPenghuni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Deskripsi_fasilitas, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Deskripsi_fasilitas, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(wilayah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addGap(5, 5, 5)
@@ -285,7 +298,7 @@ public class Kemitraan extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnHapus)
                     .addComponent(btnReset))
-                .addGap(37, 37, 37))
+                .addGap(116, 116, 116))
         );
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
@@ -332,7 +345,7 @@ public class Kemitraan extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
@@ -390,9 +403,8 @@ public class Kemitraan extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -407,7 +419,7 @@ public class Kemitraan extends javax.swing.JFrame {
     private void btnTambahDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahDataActionPerformed
         // TODO add your handling code here:
         try {
-            String sql = "INSERT INTO homey VALUES ('"+txtNamaMitra.getText()+"','"+nama_kost.getText()+"','"+boxJenisPenghuni.getSelectedItem()+"','"+Deskripsi_fasilitas.getText()+"','"+kontak.getText()+"','"+harga.getText()+"')";
+            String sql = "INSERT INTO homey VALUES ('"+txtNamaMitra.getText()+"','"+nama_kost.getText()+"','"+boxJenisPenghuni.getSelectedItem()+"','"+Deskripsi_fasilitas.getText()+"','"+wilayah.getText()+"','"+kontak.getText()+"','"+harga.getText()+"')";
             java.sql.Connection conn=(Connection)Koneksi.getConnection();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
             pst.execute();
@@ -441,12 +453,16 @@ public class Kemitraan extends javax.swing.JFrame {
         String deskripsi=jTable1.getValueAt(baris,4).toString();
         Deskripsi_fasilitas.setText(deskripsi);
         
+        // wilayah
+        String wilayaah=jTable1.getValueAt(baris,5).toString();
+        wilayah.setText(wilayaah);
+        
         // kontak
-        String kontakk = jTable1.getValueAt(baris,5).toString();
+        String kontakk = jTable1.getValueAt(baris,6).toString();
         kontak.setText(kontakk);
         
         // harga
-        String hargaa = jTable1.getValueAt(baris,6).toString();
+        String hargaa = jTable1.getValueAt(baris,7).toString();
         harga.setText(hargaa);
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -454,7 +470,7 @@ public class Kemitraan extends javax.swing.JFrame {
         // TODO add your handling code here:
         // fungsi Edit Data
         try {
-            String sql ="UPDATE homey SET pemilik = '"+txtNamaMitra.getText()+"', nama = '"+nama_kost.getText()+"', jenis = '"+boxJenisPenghuni.getSelectedItem()+"',deskripsi= '"+Deskripsi_fasilitas.getText()+"',kontak= '"+kontak.getText()+"',harga= '"+harga.getText()+"' WHERE pemilik = '"+txtNamaMitra.getText()+"'";
+            String sql ="UPDATE homey SET pemilik = '"+txtNamaMitra.getText()+"', nama = '"+nama_kost.getText()+"', jenis = '"+boxJenisPenghuni.getSelectedItem()+"',deskripsi= '"+Deskripsi_fasilitas.getText()+"',wilayah= '"+wilayah.getText()+"',kontak= '"+kontak.getText()+"',harga= '"+harga.getText()+"' WHERE pemilik = '"+txtNamaMitra.getText()+"'";
             java.sql.Connection conn=(Connection)Koneksi.getConnection();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
             pst.execute();
@@ -534,6 +550,7 @@ public class Kemitraan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -554,5 +571,6 @@ public class Kemitraan extends javax.swing.JFrame {
     private javax.swing.JTextField nama_kost;
     public javax.swing.JLabel nama_mitra;
     public javax.swing.JTextField txtNamaMitra;
+    private javax.swing.JTextField wilayah;
     // End of variables declaration//GEN-END:variables
 }
