@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package auth;
+package view;
 
-import Marikost.Kemitraan;
+import controller.Koneksi;
+import view.Kemitraan;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.PreparedStatement;
@@ -15,7 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import Marikost.MainActivity;
+import view.MainActivity;
 
 /**
  *

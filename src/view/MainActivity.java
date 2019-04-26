@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Marikost;
+package view;
 
-import auth.Koneksi;
-import auth.Login;
+import view.Petunjuk;
+import view.TentangAplikasi;
+import controller.Koneksi;
+import view.Login;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.Connection;

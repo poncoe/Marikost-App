@@ -3,11 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Marikost;
+package view;
 
-import auth.DaftarAkun;
-import auth.Koneksi;
-import auth.Login;
+import controller.Koneksi;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.Connection;
@@ -422,7 +420,7 @@ public class Kemitraan extends javax.swing.JFrame {
         // berfungsi untuk menutup layout ini
         this.dispose();
         // memanggil layout login
-        new auth.Login().setVisible(true);
+        new view.Login().setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnTambahDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahDataActionPerformed

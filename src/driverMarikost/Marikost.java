@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Marikost;
+package driverMarikost;
 
-import auth.Login;
+import view.Login;
 
 /**
  *

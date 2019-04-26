@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package auth;
+package view;
 
+import controller.Koneksi;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.Connection;
