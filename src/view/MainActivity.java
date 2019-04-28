@@ -106,14 +106,14 @@ public class MainActivity extends javax.swing.JFrame {
         btnTampilWilayah = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        btnPenawaranHarga = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         btnFilterPenghuni = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JSeparator();
         btnPetunjuk = new javax.swing.JButton();
+        radiomurah = new javax.swing.JRadioButton();
+        radiomahal = new javax.swing.JRadioButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -218,10 +218,6 @@ public class MainActivity extends javax.swing.JFrame {
 
         jLabel4.setText("Penawaran Harga :");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Termurah - Termahal", "Termahal - Termurah" }));
-
-        btnPenawaranHarga.setText("Dapatkan Harga!");
-
         jLabel5.setText("Filter Penghuni :");
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Campur", "Untuk Pria", "Untuk wanita" }));
@@ -240,34 +236,46 @@ public class MainActivity extends javax.swing.JFrame {
             }
         });
 
+        radiomurah.setText("Termurah - Termahal");
+        radiomurah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radiomurahActionPerformed(evt);
+            }
+        });
+
+        radiomahal.setText("Termahal - Termurah");
+        radiomahal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radiomahalActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, 0, 0, Short.MAX_VALUE)
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtCariWilayah)
+                    .addComponent(btnTampilWilayah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator2)
+                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnFilterPenghuni, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator4)
+                    .addComponent(btnPetunjuk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnPenawaranHarga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtCariWilayah)
-                            .addComponent(btnTampilWilayah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jSeparator2)
-                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnFilterPenghuni, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jSeparator4)
+                            .addComponent(jLabel3)
                             .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel4))))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(btnPetunjuk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4)))
+                            .addComponent(radiomurah)
+                            .addComponent(radiomahal))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -283,11 +291,11 @@ public class MainActivity extends javax.swing.JFrame {
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnPenawaranHarga)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(radiomurah)
+                .addGap(4, 4, 4)
+                .addComponent(radiomahal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
@@ -477,6 +485,72 @@ public class MainActivity extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnFilterPenghuniActionPerformed
 
+    private void radiomurahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radiomurahActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("No");
+        model.addColumn("Pemilik");
+        model.addColumn("Nama");
+        model.addColumn("Penghuni");
+        model.addColumn("Deskripsi & Fasilitas");
+        model.addColumn("Wilayah");
+        model.addColumn("Kontak");
+        model.addColumn("Harga");
+        
+        //menampilkan data database kedalam tabel
+        try {
+            int no=1;
+            // query sql untuk menampilkan semua data yang ada di table homey
+            String sql = "Select * From homey order by harga asc;";
+            // penghubung koneksi ke localhost mysql
+            java.sql.Connection conn=(Connection)Koneksi.getConnection();
+            java.sql.Statement stm=conn.createStatement();
+            // mengeksekusi sql
+            java.sql.ResultSet res=stm.executeQuery(sql);
+            // membuat perulangan untuk mencetak data yang ada didalam sql ke dalam tabel
+            while(res.next()){
+                model.addRow(new Object[]{no++,res.getString(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5),res.getString(6),res.getString(7)});
+            }
+            jTable1.setModel(model);
+            // membuat table menjadi responsif
+            jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_radiomurahActionPerformed
+
+    private void radiomahalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radiomahalActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("No");
+        model.addColumn("Pemilik");
+        model.addColumn("Nama");
+        model.addColumn("Penghuni");
+        model.addColumn("Deskripsi & Fasilitas");
+        model.addColumn("Wilayah");
+        model.addColumn("Kontak");
+        model.addColumn("Harga");
+        
+        //menampilkan data database kedalam tabel
+        try {
+            int no=1;
+            // query sql untuk menampilkan semua data yang ada di table homey
+            String sql = "Select * From homey order by harga desc;";
+            // penghubung koneksi ke localhost mysql
+            java.sql.Connection conn=(Connection)Koneksi.getConnection();
+            java.sql.Statement stm=conn.createStatement();
+            // mengeksekusi sql
+            java.sql.ResultSet res=stm.executeQuery(sql);
+            // membuat perulangan untuk mencetak data yang ada didalam sql ke dalam tabel
+            while(res.next()){
+                model.addRow(new Object[]{no++,res.getString(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5),res.getString(6),res.getString(7)});
+            }
+            jTable1.setModel(model);
+            // membuat table menjadi responsif
+            jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_radiomahalActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -519,11 +593,9 @@ public class MainActivity extends javax.swing.JFrame {
     private javax.swing.JPanel List_data;
     private javax.swing.JButton btnFilterPenghuni;
     private static javax.swing.JButton btnLogout;
-    private javax.swing.JButton btnPenawaranHarga;
     private javax.swing.JButton btnPetunjuk;
     private javax.swing.JButton btnTampilWilayah;
     private javax.swing.JToggleButton btnTentangAplikasi;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private static javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -542,6 +614,8 @@ public class MainActivity extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTable jTable1;
     public javax.swing.JLabel nama_user;
+    private javax.swing.JRadioButton radiomahal;
+    private javax.swing.JRadioButton radiomurah;
     private javax.swing.JTextField txtCariWilayah;
     // End of variables declaration//GEN-END:variables
 }
