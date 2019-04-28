@@ -378,6 +378,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Tampilkan Wilayah"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTampilWilayahActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator2">
             </Component>
@@ -430,6 +433,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Filter Penghuni"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFilterPenghuniActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator4">
             </Component>

@@ -210,6 +210,11 @@ public class MainActivity extends javax.swing.JFrame {
         jLabel3.setText("Pencarian Wilayah :");
 
         btnTampilWilayah.setText("Tampilkan Wilayah");
+        btnTampilWilayah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTampilWilayahActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Penawaran Harga :");
 
@@ -222,6 +227,11 @@ public class MainActivity extends javax.swing.JFrame {
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Campur", "Untuk Pria", "Untuk wanita" }));
 
         btnFilterPenghuni.setText("Filter Penghuni");
+        btnFilterPenghuni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFilterPenghuniActionPerformed(evt);
+            }
+        });
 
         btnPetunjuk.setText("Petunjuk");
         btnPetunjuk.addActionListener(new java.awt.event.ActionListener() {
@@ -400,6 +410,72 @@ public class MainActivity extends javax.swing.JFrame {
         // memanggil layout petunjuk
         new Petunjuk().setVisible(true);
     }//GEN-LAST:event_btnPetunjukActionPerformed
+
+    private void btnTampilWilayahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTampilWilayahActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("No");
+        model.addColumn("Pemilik");
+        model.addColumn("Nama");
+        model.addColumn("Penghuni");
+        model.addColumn("Deskripsi & Fasilitas");
+        model.addColumn("Wilayah");
+        model.addColumn("Kontak");
+        model.addColumn("Harga");
+        
+        //menampilkan data database kedalam tabel
+        try {
+            int no=1;
+            // query sql untuk menampilkan semua data yang ada di table homey
+            String sql = "SELECT * FROM homey where wilayah like '"+txtCariWilayah.getText()+"'";
+            // penghubung koneksi ke localhost mysql
+            java.sql.Connection conn=(Connection)Koneksi.getConnection();
+            java.sql.Statement stm=conn.createStatement();
+            // mengeksekusi sql
+            java.sql.ResultSet res=stm.executeQuery(sql);
+            // membuat perulangan untuk mencetak data yang ada didalam sql ke dalam tabel
+            while(res.next()){
+                model.addRow(new Object[]{no++,res.getString(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5),res.getString(6),res.getString(7)});
+            }
+            jTable1.setModel(model);
+            // membuat table menjadi responsif
+            jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnTampilWilayahActionPerformed
+
+    private void btnFilterPenghuniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterPenghuniActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("No");
+        model.addColumn("Pemilik");
+        model.addColumn("Nama");
+        model.addColumn("Penghuni");
+        model.addColumn("Deskripsi & Fasilitas");
+        model.addColumn("Wilayah");
+        model.addColumn("Kontak");
+        model.addColumn("Harga");
+        
+        //menampilkan data database kedalam tabel
+        try {
+            int no=1;
+            // query sql untuk menampilkan semua data yang ada di table homey
+            String sql = "SELECT * FROM homey where jenis like '"+jComboBox2.getSelectedItem()+"'";
+            // penghubung koneksi ke localhost mysql
+            java.sql.Connection conn=(Connection)Koneksi.getConnection();
+            java.sql.Statement stm=conn.createStatement();
+            // mengeksekusi sql
+            java.sql.ResultSet res=stm.executeQuery(sql);
+            // membuat perulangan untuk mencetak data yang ada didalam sql ke dalam tabel
+            while(res.next()){
+                model.addRow(new Object[]{no++,res.getString(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5),res.getString(6),res.getString(7)});
+            }
+            jTable1.setModel(model);
+            // membuat table menjadi responsif
+            jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnFilterPenghuniActionPerformed
 
     /**
      * @param args the command line arguments
