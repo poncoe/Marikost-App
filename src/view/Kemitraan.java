@@ -76,7 +76,6 @@ public class Kemitraan extends javax.swing.JFrame {
     
     // prosedur ini berfungsi untuk melakukan reset pada field, bisa jg pake null
     public void penghapus() {
-        txtNamaMitra.setText("");
         nama_kost.setText("");
         Deskripsi_fasilitas.setText("");
         wilayah.setText("");
@@ -162,6 +161,11 @@ public class Kemitraan extends javax.swing.JFrame {
 
         txtNamaMitra.setEditable(false);
         txtNamaMitra.setEnabled(false);
+        txtNamaMitra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNamaMitraActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Nama Kost/Kontrakan :");
 
@@ -523,6 +527,10 @@ public class Kemitraan extends javax.swing.JFrame {
         tampilTable();
         penghapus();
     }//GEN-LAST:event_btnHapusActionPerformed
+
+    private void txtNamaMitraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaMitraActionPerformed
+        // TODO add your handling code here:    
+    }//GEN-LAST:event_txtNamaMitraActionPerformed
 
     /**
      * @param args the command line arguments

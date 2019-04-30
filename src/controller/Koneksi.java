@@ -21,8 +21,8 @@ public class Koneksi {
             // memanggil koneksi jdbc driver
             Class.forName("com.mysql.jdbc.Driver");
             // menghubungkan koneksi kedatabase mysql menggunakan jdbc
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3307/marikost_db", "root", ""); // Port 3307
-            //con = DriverManager.getConnection("jdbc:mysql://localhost:3306/marikost_db", "root", ""); // Port 3306
+            //con = DriverManager.getConnection("jdbc:mysql://localhost:3307/marikost_db", "root", ""); // Port 3307
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/marikost_db", "root", ""); // Port 3306
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

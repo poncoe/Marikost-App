@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import view.MainActivity;
 
 /**
@@ -323,6 +324,7 @@ public class Login extends javax.swing.JFrame {
             // jika ada, maka akan berhasil login dan masuk ke halaman Main Activity
             if(rs.next())
             {
+                    DefaultTableModel model = new DefaultTableModel();
                     Kemitraan mitra = new Kemitraan();
                     mitra.setVisible(true);
                     mitra.pack();

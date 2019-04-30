@@ -133,6 +133,12 @@ public class DaftarAkun extends javax.swing.JFrame {
 
         jLabel7.setText("Kata Sandi :");
 
+        txtPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPassActionPerformed(evt);
+            }
+        });
+
         btnDaftarAkun.setBackground(new java.awt.Color(51, 204, 255));
         btnDaftarAkun.setText("Daftar Akun");
         btnDaftarAkun.addActionListener(new java.awt.event.ActionListener() {
@@ -316,6 +322,10 @@ public class DaftarAkun extends javax.swing.JFrame {
         // menutup halaman ini
         this.dispose();
     }//GEN-LAST:event_btnDaftarMitraActionPerformed
+
+    private void txtPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPassActionPerformed
 
     /**
      * @param args the command line arguments
