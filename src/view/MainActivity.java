@@ -28,27 +28,28 @@ public class MainActivity extends javax.swing.JFrame {
      */
     public MainActivity() {
         initComponents();
-        
+
         // memanggil prosedur tampil table
         tampilTable();
-        
+
         // mengambil ukuran layar
         Dimension layar = Toolkit.getDefaultToolkit().getScreenSize();
 
         // membuat titik x dan y
-        int x = layar.width / 2  - this.getSize().width / 2;
+        int x = layar.width / 2 - this.getSize().width / 2;
         int y = layar.height / 2 - this.getSize().height / 2;
 
         this.setLocation(x, y);
-        
+
         // Matiin Resize / Maximize
         setResizable(false);
     }
-    
-    private void tampilTable(){
+
+    private void tampilTable() {
         // membuat tampilan model tabel
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("No");
+        model.addColumn("ID");
         model.addColumn("Pemilik");
         model.addColumn("Nama");
         model.addColumn("Penghuni");
@@ -56,20 +57,20 @@ public class MainActivity extends javax.swing.JFrame {
         model.addColumn("Wilayah");
         model.addColumn("Kontak");
         model.addColumn("Harga");
-        
+
         //menampilkan data database kedalam tabel
         try {
-            int no=1;
+            int no = 1;
             // query sql untuk menampilkan semua data yang ada di table homey
             String sql = "select * from homey";
             // penghubung koneksi ke localhost mysql
-            java.sql.Connection conn=(Connection)Koneksi.getConnection();
-            java.sql.Statement stm=conn.createStatement();
+            java.sql.Connection conn = (Connection) Koneksi.getConnection();
+            java.sql.Statement stm = conn.createStatement();
             // mengeksekusi sql
-            java.sql.ResultSet res=stm.executeQuery(sql);
+            java.sql.ResultSet res = stm.executeQuery(sql);
             // membuat perulangan untuk mencetak data yang ada didalam sql ke dalam tabel
-            while(res.next()){
-                model.addRow(new Object[]{no++,res.getString(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5),res.getString(6),res.getString(7)});
+            while (res.next()) {
+                model.addRow(new Object[]{no++, res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6), res.getString(7),res.getString(8)});
             }
             jTable1.setModel(model);
             // membuat table menjadi responsif
@@ -114,6 +115,7 @@ public class MainActivity extends javax.swing.JFrame {
         btnPetunjuk = new javax.swing.JButton();
         radiomurah = new javax.swing.JRadioButton();
         radiomahal = new javax.swing.JRadioButton();
+        btnRefresh = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -309,16 +311,24 @@ public class MainActivity extends javax.swing.JFrame {
                 .addComponent(btnPetunjuk))
         );
 
+        btnRefresh.setText("Refresh Table");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(nama_user, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(198, 198, 198))
+                        .addGap(101, 101, 101)
+                        .addComponent(btnRefresh))
                     .addComponent(List_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -366,8 +376,10 @@ public class MainActivity extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(nama_user, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nama_user, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRefresh))
+                        .addGap(10, 10, 10)
                         .addComponent(List_data, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -394,27 +406,27 @@ public class MainActivity extends javax.swing.JFrame {
 
     private void btnTentangAplikasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTentangAplikasiActionPerformed
         // TODO add your handling code here:
-        
+
         // memanggil layout tentang aplikasi
         new TentangAplikasi().setVisible(true);
     }//GEN-LAST:event_btnTentangAplikasiActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
-        
+
         // mengclose / menutup layout ini
         this.dispose();
-        
+
         // memberikan dialog message kalo logout berhasil
         JOptionPane.showMessageDialog(null, "Logout Akun Berhasil!");
-        
+
         // memanggil layout login
         new Login().setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnPetunjukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPetunjukActionPerformed
         // TODO add your handling code here:
-        
+
         // memanggil layout petunjuk
         new Petunjuk().setVisible(true);
     }//GEN-LAST:event_btnPetunjukActionPerformed
@@ -423,6 +435,7 @@ public class MainActivity extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("No");
+        model.addColumn("ID");
         model.addColumn("Pemilik");
         model.addColumn("Nama");
         model.addColumn("Penghuni");
@@ -430,25 +443,30 @@ public class MainActivity extends javax.swing.JFrame {
         model.addColumn("Wilayah");
         model.addColumn("Kontak");
         model.addColumn("Harga");
-        
-        //menampilkan data database kedalam tabel
-        try {
-            int no=1;
-            // query sql untuk menampilkan semua data yang ada di table homey
-            String sql = "SELECT * FROM homey where wilayah like '"+txtCariWilayah.getText()+"'";
-            // penghubung koneksi ke localhost mysql
-            java.sql.Connection conn=(Connection)Koneksi.getConnection();
-            java.sql.Statement stm=conn.createStatement();
-            // mengeksekusi sql
-            java.sql.ResultSet res=stm.executeQuery(sql);
-            // membuat perulangan untuk mencetak data yang ada didalam sql ke dalam tabel
-            while(res.next()){
-                model.addRow(new Object[]{no++,res.getString(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5),res.getString(6),res.getString(7)});
+
+        String wilayah = txtCariWilayah.getText();
+        if (wilayah.equals("")) {
+            JOptionPane.showMessageDialog(null, "Kolom Wilayah Tidak Boleh Kosong!");
+        } else {
+            //menampilkan data database kedalam tabel
+            try {
+                int no = 1;
+                // query sql untuk menampilkan semua data yang ada di table homey
+                String sql = "SELECT * FROM homey where wilayah like '" + txtCariWilayah.getText() + "'";
+                // penghubung koneksi ke localhost mysql
+                java.sql.Connection conn = (Connection) Koneksi.getConnection();
+                java.sql.Statement stm = conn.createStatement();
+                // mengeksekusi sql
+                java.sql.ResultSet res = stm.executeQuery(sql);
+                // membuat perulangan untuk mencetak data yang ada didalam sql ke dalam tabel
+                while (res.next()) {
+                    model.addRow(new Object[]{no++, res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6), res.getString(7),res.getString(8)});
+                }
+                jTable1.setModel(model);
+                // membuat table menjadi responsif
+                jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+            } catch (Exception e) {
             }
-            jTable1.setModel(model);
-            // membuat table menjadi responsif
-            jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        } catch (Exception e) {
         }
     }//GEN-LAST:event_btnTampilWilayahActionPerformed
 
@@ -456,6 +474,7 @@ public class MainActivity extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("No");
+        model.addColumn("ID");
         model.addColumn("Pemilik");
         model.addColumn("Nama");
         model.addColumn("Penghuni");
@@ -463,20 +482,20 @@ public class MainActivity extends javax.swing.JFrame {
         model.addColumn("Wilayah");
         model.addColumn("Kontak");
         model.addColumn("Harga");
-        
+
         //menampilkan data database kedalam tabel
         try {
-            int no=1;
+            int no = 1;
             // query sql untuk menampilkan semua data yang ada di table homey
-            String sql = "SELECT * FROM homey where jenis like '"+jComboBox2.getSelectedItem()+"'";
+            String sql = "SELECT * FROM homey where jenis like '" + jComboBox2.getSelectedItem() + "'";
             // penghubung koneksi ke localhost mysql
-            java.sql.Connection conn=(Connection)Koneksi.getConnection();
-            java.sql.Statement stm=conn.createStatement();
+            java.sql.Connection conn = (Connection) Koneksi.getConnection();
+            java.sql.Statement stm = conn.createStatement();
             // mengeksekusi sql
-            java.sql.ResultSet res=stm.executeQuery(sql);
+            java.sql.ResultSet res = stm.executeQuery(sql);
             // membuat perulangan untuk mencetak data yang ada didalam sql ke dalam tabel
-            while(res.next()){
-                model.addRow(new Object[]{no++,res.getString(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5),res.getString(6),res.getString(7)});
+            while (res.next()) {
+                model.addRow(new Object[]{no++, res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6), res.getString(7), res.getString(8)});
             }
             jTable1.setModel(model);
             // membuat table menjadi responsif
@@ -489,27 +508,28 @@ public class MainActivity extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("No");
-        model.addColumn("Pemilik");
+        model.addColumn("ID");
+        model.addColumn("Pemilik");;
         model.addColumn("Nama");
         model.addColumn("Penghuni");
         model.addColumn("Deskripsi & Fasilitas");
         model.addColumn("Wilayah");
         model.addColumn("Kontak");
         model.addColumn("Harga");
-        
+
         //menampilkan data database kedalam tabel
         try {
-            int no=1;
+            int no = 1;
             // query sql untuk menampilkan semua data yang ada di table homey
             String sql = "Select * From homey order by harga asc;";
             // penghubung koneksi ke localhost mysql
-            java.sql.Connection conn=(Connection)Koneksi.getConnection();
-            java.sql.Statement stm=conn.createStatement();
+            java.sql.Connection conn = (Connection) Koneksi.getConnection();
+            java.sql.Statement stm = conn.createStatement();
             // mengeksekusi sql
-            java.sql.ResultSet res=stm.executeQuery(sql);
+            java.sql.ResultSet res = stm.executeQuery(sql);
             // membuat perulangan untuk mencetak data yang ada didalam sql ke dalam tabel
-            while(res.next()){
-                model.addRow(new Object[]{no++,res.getString(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5),res.getString(6),res.getString(7)});
+            while (res.next()) {
+                model.addRow(new Object[]{no++, res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6), res.getString(7), res.getString(8)});
             }
             jTable1.setModel(model);
             // membuat table menjadi responsif
@@ -522,6 +542,7 @@ public class MainActivity extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("No");
+        model.addColumn("ID");
         model.addColumn("Pemilik");
         model.addColumn("Nama");
         model.addColumn("Penghuni");
@@ -529,20 +550,20 @@ public class MainActivity extends javax.swing.JFrame {
         model.addColumn("Wilayah");
         model.addColumn("Kontak");
         model.addColumn("Harga");
-        
+
         //menampilkan data database kedalam tabel
         try {
-            int no=1;
+            int no = 1;
             // query sql untuk menampilkan semua data yang ada di table homey
             String sql = "Select * From homey order by harga desc;";
             // penghubung koneksi ke localhost mysql
-            java.sql.Connection conn=(Connection)Koneksi.getConnection();
-            java.sql.Statement stm=conn.createStatement();
+            java.sql.Connection conn = (Connection) Koneksi.getConnection();
+            java.sql.Statement stm = conn.createStatement();
             // mengeksekusi sql
-            java.sql.ResultSet res=stm.executeQuery(sql);
+            java.sql.ResultSet res = stm.executeQuery(sql);
             // membuat perulangan untuk mencetak data yang ada didalam sql ke dalam tabel
-            while(res.next()){
-                model.addRow(new Object[]{no++,res.getString(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5),res.getString(6),res.getString(7)});
+            while (res.next()) {
+                model.addRow(new Object[]{no++, res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6), res.getString(7), res.getString(8)});
             }
             jTable1.setModel(model);
             // membuat table menjadi responsif
@@ -550,6 +571,40 @@ public class MainActivity extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_radiomahalActionPerformed
+
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("No");
+        model.addColumn("ID");
+        model.addColumn("Pemilik");
+        model.addColumn("Nama");
+        model.addColumn("Penghuni");
+        model.addColumn("Deskripsi & Fasilitas");
+        model.addColumn("Wilayah");
+        model.addColumn("Kontak");
+        model.addColumn("Harga");
+
+        //menampilkan data database kedalam tabel
+        try {
+            int no = 1;
+            // query sql untuk menampilkan semua data yang ada di table homey
+            String sql = "Select * From homey";
+            // penghubung koneksi ke localhost mysql
+            java.sql.Connection conn = (Connection) Koneksi.getConnection();
+            java.sql.Statement stm = conn.createStatement();
+            // mengeksekusi sql
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            // membuat perulangan untuk mencetak data yang ada didalam sql ke dalam tabel
+            while (res.next()) {
+                model.addRow(new Object[]{no++, res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6), res.getString(7), res.getString(8)});
+            }
+            jTable1.setModel(model);
+            // membuat table menjadi responsif
+            jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnRefreshActionPerformed
 
     /**
      * @param args the command line arguments
@@ -594,6 +649,7 @@ public class MainActivity extends javax.swing.JFrame {
     private javax.swing.JButton btnFilterPenghuni;
     private static javax.swing.JButton btnLogout;
     private javax.swing.JButton btnPetunjuk;
+    private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnTampilWilayah;
     private javax.swing.JToggleButton btnTentangAplikasi;
     private javax.swing.JComboBox<String> jComboBox2;

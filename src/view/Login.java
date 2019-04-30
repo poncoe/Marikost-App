@@ -24,28 +24,27 @@ import view.MainActivity;
  * @author J
  */
 public class Login extends javax.swing.JFrame {
-    
 
     /**
      * Creates new form NewJFrame
      */
     public Login() {
         initComponents();
-        
+
         // mengambil ukuran layar
         Dimension layar = Toolkit.getDefaultToolkit().getScreenSize();
 
         // membuat titik x dan y
-        int x = layar.width / 2  - this.getSize().width / 2;
+        int x = layar.width / 2 - this.getSize().width / 2;
         int y = layar.height / 2 - this.getSize().height / 2;
 
         this.setLocation(x, y);
-        
+
         // Matiin Resize / Maximize
         setResizable(false);
 
     }
-    
+
     // prosedur untuk penghapus / reset field
     public void penghapus() {
         txtUsername.setText("");
@@ -247,10 +246,10 @@ public class Login extends javax.swing.JFrame {
 
     private void btnRegisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisActionPerformed
         // TODO add your handling code here:
-        
+
         // memanggil daftar akun
         new DaftarAkun().setVisible(true);
-        
+
         // menutup layout ini
         this.dispose();
     }//GEN-LAST:event_btnRegisActionPerformed
@@ -259,44 +258,48 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         PreparedStatement ps;
         ResultSet rs;
-        
+
         // mengambil data / nilai dari field username & pass menggunakan getText
         String username = txtUsername.getText();
         String password = String.valueOf(txtPassword.getPassword());
-        
+
         // queri untuk mengecek apakah username & password ada di database di table autentikasi
         String query = "SELECT * FROM `autentikasi` WHERE `username` =? AND `password` =?";
-        
-        try {
-            ps = Koneksi.getConnection().prepareStatement(query);
-            
-            ps.setString(1, username);
-            ps.setString(2, password);
-            
-            // mengeksekusi queri
-            rs = ps.executeQuery();
-            
-            // jika ada, maka akan berhasil login dan masuk ke halaman Main Activity
-            if(rs.next())
-            {
+
+        // kodingan untuk pengecekan (jika user tidak mengisi field)
+        if (username.equals("")) {
+            JOptionPane.showMessageDialog(null, "Masukan Username!");
+        } else if (password.equals("")) {
+            JOptionPane.showMessageDialog(null, "Masukan Kata Sandi!");
+        } else {
+            try {
+                ps = Koneksi.getConnection().prepareStatement(query);
+
+                ps.setString(1, username);
+                ps.setString(2, password);
+
+                // mengeksekusi queri
+                rs = ps.executeQuery();
+
+                // jika ada, maka akan berhasil login dan masuk ke halaman Main Activity
+                if (rs.next()) {
                     MainActivity main = new MainActivity();
                     main.setVisible(true);
                     main.pack();
                     main.setLocationRelativeTo(null);
                     main.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                    main.nama_user.setText("Hi, "+username+"");
-                    
+                    main.nama_user.setText("Hi, " + username + "");
+
                     this.dispose();
-            }
-            
-            // jika tidak berhasil / tidak terdaftar maka akan muncul dialog jika user belom terdaftar & salah
-            else{
+                } // jika tidak berhasil / tidak terdaftar maka akan muncul dialog jika user belom terdaftar & salah
+                else {
                     JOptionPane.showMessageDialog(null, "Akun Belum Terdaftar / Nama Pengguna atau Kata Sandi Salah!", "Login Gagal!", 2);
                     penghapus();
                 }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
@@ -304,46 +307,51 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         PreparedStatement ps;
         ResultSet rs;
-        
+
         // mengambil data / nilai dari field username & pass menggunakan getText
         String username = txtUsername.getText();
         String password = String.valueOf(txtPassword.getPassword());
-        
+
         // queri untuk mengecek apakah mitra & password ada di database di table mitra
         String query = "SELECT * FROM `mitra` WHERE `nama_mitra` =? AND `password` =?";
-        
-        try {
-            ps = Koneksi.getConnection().prepareStatement(query);
-            
-            ps.setString(1, username);
-            ps.setString(2, password);
-            
-            // mengeksekusi queri
-            rs = ps.executeQuery();
-            
-            // jika ada, maka akan berhasil login dan masuk ke halaman Main Activity
-            if(rs.next())
-            {
+
+        // kodingan untuk pengecekan (jika user tidak mengisi field)
+        if (username.equals("")) {
+            JOptionPane.showMessageDialog(null, "Masukan Username!");
+        } else if (password.equals("")) {
+            JOptionPane.showMessageDialog(null, "Masukan Kata Sandi!");
+        } else {
+            try {
+                ps = Koneksi.getConnection().prepareStatement(query);
+
+                ps.setString(1, username);
+                ps.setString(2, password);
+
+                // mengeksekusi queri
+                rs = ps.executeQuery();
+
+                // jika ada, maka akan berhasil login dan masuk ke halaman Main Activity
+                if (rs.next()) {
                     DefaultTableModel model = new DefaultTableModel();
                     Kemitraan mitra = new Kemitraan();
                     mitra.setVisible(true);
                     mitra.pack();
                     mitra.setLocationRelativeTo(null);
                     mitra.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                    mitra.nama_mitra.setText("Hi, "+username+"");
+                    mitra.nama_mitra.setText("Hi, " + username + "");
                     mitra.txtNamaMitra.setText(username);
-                    
+
                     this.dispose();
-            }
-            
-            // jika tidak berhasil / tidak terdaftar maka akan muncul dialog jika user belom terdaftar & salah
-            else{
+                } // jika tidak berhasil / tidak terdaftar maka akan muncul dialog jika user belom terdaftar & salah
+                else {
                     JOptionPane.showMessageDialog(null, "Mitra Belum Terdaftar / Nama Mitra atau Kata Sandi Salah!", "Login Gagal!", 2);
                     penghapus();
                 }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
     }//GEN-LAST:event_btnLoginMitraActionPerformed
 
