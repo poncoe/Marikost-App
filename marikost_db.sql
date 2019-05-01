@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 25, 2019 at 09:36 PM
+-- Generation Time: Apr 30, 2019 at 09:51 PM
 -- Server version: 10.1.38-MariaDB
--- PHP Version: 5.6.40
+-- PHP Version: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -50,14 +50,22 @@ INSERT INTO `autentikasi` (`username`, `password`) VALUES
 --
 
 CREATE TABLE `homey` (
+  `id` varchar(50) NOT NULL,
   `pemilik` varchar(50) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `jenis` varchar(50) NOT NULL,
-  `deskripsi` varchar(200) NOT NULL,
+  `deskripsi` varchar(50) NOT NULL,
   `wilayah` varchar(50) NOT NULL,
-  `kontak` int(20) NOT NULL,
-  `harga` int(20) NOT NULL
+  `kontak` int(50) NOT NULL,
+  `harga` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `homey`
+--
+
+INSERT INTO `homey` (`id`, `pemilik`, `nama`, `jenis`, `deskripsi`, `wilayah`, `kontak`, `harga`) VALUES
+('woke2', 'wisma oke', 'ahuy', 'Untuk Pria', 'wokeh', 'sukabirus', 123123, 2000);
 
 -- --------------------------------------------------------
 
@@ -87,6 +95,12 @@ INSERT INTO `mitra` (`nama_mitra`, `password`) VALUES
 --
 ALTER TABLE `autentikasi`
   ADD PRIMARY KEY (`username`);
+
+--
+-- Indexes for table `homey`
+--
+ALTER TABLE `homey`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `mitra`
