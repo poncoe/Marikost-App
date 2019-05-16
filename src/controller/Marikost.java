@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package driverMarikost;
+package controller;
 
 import view.Login;
 
@@ -22,8 +22,11 @@ public class Marikost {
         // melakukan print biasa
         System.out.println("Selamat Datang! Memulai Marikost...");
         
+        // Membuat Objek baru untuk Controller GUI
+        GUI c = new GUI();
+        
         // memanggil layout login
-        new Login().setVisible(true);
+        //new Login().setVisible(true);
     }
     
 }

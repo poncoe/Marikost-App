@@ -11,10 +11,13 @@ import controller.Koneksi;
 import view.Login;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JToggleButton;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -642,6 +645,24 @@ public class MainActivity extends javax.swing.JFrame {
                 new MainActivity().setVisible(true);
             }
         });
+    }
+    
+    public JButton getlogout(){
+        return btnLogout;
+    }
+    
+    public JButton getPetunjuk(){
+        return btnPetunjuk;
+    }
+    
+    public JToggleButton getTentang(){
+        return btnTentangAplikasi;
+    }
+    
+    public void addActionListener(ActionListener e){
+        btnLogout.addActionListener(e);
+        btnPetunjuk.addActionListener(e);
+        btnTentangAplikasi.addActionListener(e);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

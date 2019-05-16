@@ -8,6 +8,7 @@ package view;
 import controller.Koneksi;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,6 +16,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 /**
@@ -308,6 +310,14 @@ public class DaftarMitra extends javax.swing.JFrame {
                 new DaftarMitra().setVisible(true);
             }
         });
+    }
+    
+    public JButton getKembaliMitra(){
+        return btnKembali;
+    }
+    
+    public void addActionListener(ActionListener e){
+        btnKembali.addActionListener(e);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

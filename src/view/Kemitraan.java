@@ -8,12 +8,14 @@ package view;
 import controller.Koneksi;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -474,6 +476,8 @@ public class Kemitraan extends javax.swing.JFrame {
 
         // berfungsi untuk menutup layout ini
         this.dispose();
+
+        JOptionPane.showMessageDialog(null, "Logout Akun Berhasil!");
         // memanggil layout login
         new view.Login().setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
@@ -702,6 +706,14 @@ public class Kemitraan extends javax.swing.JFrame {
                 new Kemitraan().setVisible(true);
             }
         });
+    }
+
+    public JButton getlogoutMitra() {
+        return btnLogout;
+    }
+
+    public void addActionListener(ActionListener e) {
+        btnLogout.addActionListener(e);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
